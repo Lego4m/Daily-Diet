@@ -11,23 +11,26 @@ interface ButtonProps extends TouchableHighlightProps {
   type?: ButtonTypeStyleProps;
 }
 
-export function Button({ type = 'primary', Icon, children }: ButtonProps) {
+export function Button({ type = 'primary', Icon, children, ...rest }: ButtonProps) {
   const theme = useTheme();
 
   return (
     <Container
-      type={type}
+      type={type} 
+      {...rest}
     >
       <Content>
         { Icon && (
           <Icon 
             style={{ marginRight: 12 }}
             size={18}
-            color={theme.colors.white}
+            color={
+              type === 'primary' ? theme.colors.white : theme.colors.gray_100
+            }
           />
         ) }
         
-        <Title>
+        <Title type={type}>
           {children}
         </Title>
       </Content>

@@ -6,6 +6,7 @@ import { Button } from '@components/Button';
 
 import logo from '../../assets/logo.png'
 import avatar from '../../assets/avatar.png'
+import { Trash } from 'phosphor-react-native';
 
 export function Home() {
   return (
@@ -27,7 +28,10 @@ export function Home() {
         </PercentualSubText>
       </PercentBox>
 
-      <Button>
+      <Button
+        // type='secondary'
+        onPress={() => {}}
+      >
         Nova refeição
       </Button>
     </Container>
