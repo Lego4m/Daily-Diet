@@ -13,9 +13,7 @@ export const Container = styled.TouchableHighlight.attrs<Props>(({ theme, type }
     theme.colors.gray_500,
 }))<Props>`
   flex: 1;
-  
-  min-height: 50px;
-  max-height: 50px;
+  flex-direction: row;
 
   ${({ theme, type }) => css`
     background-color: ${
@@ -31,10 +29,6 @@ export const Container = styled.TouchableHighlight.attrs<Props>(({ theme, type }
 
   justify-content: center;
   align-items: center; 
-`;
-
-export const Content = styled.View`
-  flex-direction: row;
 `;
 
 export const Title = styled.Text<Props>`

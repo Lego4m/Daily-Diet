@@ -49,7 +49,7 @@ interface ArrowUpRightProps {
 export const ArrowUpRight = styled(Arrow).attrs<ArrowUpRightProps>(({ theme, isOnDiet = true }) => ({
   color: isOnDiet ? theme.colors.green_dark : theme.colors.red_dark,
   size: 24,
-}))`
+}))<ArrowUpRightProps>`
   position: absolute;
   top: 8px;
   right: 8px;

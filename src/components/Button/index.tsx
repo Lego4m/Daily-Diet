@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components/native';
 
 import { IconProps } from 'phosphor-react-native';
 
-import { ButtonTypeStyleProps, Container, Content, Title } from './styles';
+import { ButtonTypeStyleProps, Container, Title } from './styles';
 
 interface ButtonProps extends TouchableHighlightProps {
   Icon?: React.FC<IconProps>;
@@ -19,7 +19,7 @@ export function Button({ type = 'primary', Icon, children, ...rest }: ButtonProp
       type={type} 
       {...rest}
     >
-      <Content>
+      <>
         { Icon && (
           <Icon 
             style={{ marginRight: 12 }}
@@ -33,7 +33,7 @@ export function Button({ type = 'primary', Icon, children, ...rest }: ButtonProp
         <Title type={type}>
           {children}
         </Title>
-      </Content>
+      </>
     </Container>
   )
 }
