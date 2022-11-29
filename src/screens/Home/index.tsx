@@ -11,12 +11,11 @@ import {
   Header, 
   PercentBox, 
   ArrowUpRight, 
-  PercentualText, 
-  PercentualSubText, 
   NewMealTitle, 
   MealSectionHeader 
 } from './styles';
 
+import { InfoBox } from '@components/InfoBox';
 import { Button } from '@components/Button';
 import { MealCard } from '@components/MealCard';
 
@@ -61,13 +60,10 @@ export function Home() {
             <>
               <ArrowUpRight isOnDiet={isOnDiet} />
 
-              <PercentualText>
-                90,86%
-              </PercentualText>
-
-              <PercentualSubText>
-                das refeições dentro da dieta
-              </PercentualSubText>
+              <InfoBox
+                information='98,86%'
+                description='das refeições dentro da dieta' 
+              />
             </>
           </PercentBox>
 

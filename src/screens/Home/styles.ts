@@ -55,26 +55,6 @@ export const ArrowUpRight = styled(Arrow).attrs<ArrowUpRightProps>(({ theme, isO
   right: 8px;
 `;
 
-export const PercentualText = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.colors.gray_100};
-    font-size: ${theme.font_size.xxl}px;
-    font-family: ${theme.font_family.bold};
-
-    text-align: center;
-  `}
-`;
-
-export const PercentualSubText = styled.Text`
-  text-align: center;
-
-  ${({ theme }) => css`
-    color: ${theme.colors.gray_200};
-    font-size: ${theme.font_size.sm}px;
-    font-family: ${theme.font_family.regular};
-  `}
-`;
-
 export const NewMealTitle = styled.Text`
   margin-top: 40px;
   margin-bottom: 8px;
