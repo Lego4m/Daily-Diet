@@ -2,9 +2,7 @@ import styled, { css } from 'styled-components/native';
 
 import { infoBoxInformationFontSize } from '.';
 
-export const Container = styled.View`
-  flex: 1;
-`;
+export const Container = styled.View``;
 
 interface InformationTextProps {
   fontSize: infoBoxInformationFontSize;
