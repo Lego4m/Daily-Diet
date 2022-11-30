@@ -1,18 +1,13 @@
-import { TouchableOpacity } from 'react-native';
-
 import { 
   Container, 
-  Header, 
-  BackIcon, 
   StatisticsContainer, 
   StatisticsTitle,
   StatisticsBlock,
   StatisticsGroupBlock
 } from './styles';
 
+import { Header } from '@components/Header';
 import { InfoBox } from '@components/InfoBox';
-
-const isOnDiet = true;
 
 const infos = {
   daysOnDietInSequence: 22,
@@ -24,13 +19,9 @@ const infos = {
 export function Statistics() {
 
   return (
-    <Container isOnDiet={isOnDiet}>
-      <Header>
-        <TouchableOpacity activeOpacity={0.65}>
-          <BackIcon isOnDiet={isOnDiet} />
-        </TouchableOpacity>
-
-        <InfoBox
+    <Container>
+      <Header headerColor='inDiet'>
+        <InfoBox 
           information='90,86%'
           description='das refeições dentro da dieta'
           informationFontSize='xxl'

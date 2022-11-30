@@ -1,38 +1,14 @@
 import styled, { css } from 'styled-components/native';
 
-import { ArrowLeft as ArrowLeftBase } from 'phosphor-react-native';
-
-interface ContainerProps {
-  isOnDiet: boolean
-}
-
-export const Container = styled.View<ContainerProps>`
+export const Container = styled.View`
+  background-color: ${({ theme }) => theme.colors.gray_700};
   flex: 1;
-  
-  background: ${({ theme, isOnDiet }) => 
-    isOnDiet ? theme.colors.green_light : theme.colors.red_light
-  };
 `;
-
-export const Header = styled.View`
-  padding: 64px 24px 0;
-`;
-
-interface BackIconProps {
-  isOnDiet: boolean;
-}
-
-export const BackIcon = styled(ArrowLeftBase).attrs<BackIconProps>(({ theme, isOnDiet = true }) => ({
-  color: isOnDiet ? theme.colors.green_dark : theme.colors.red_dark,
-  size: 24,
-}))<BackIconProps>``;
 
 export const StatisticsContainer = styled.View`
-  flex: 1;
-
   background-color: ${({ theme }) => theme.colors.gray_700};
 
-  margin-top: 32px;
+  margin-top: -32px;
   padding: 0 24px;
 
   border-top-left-radius: 20px;
@@ -59,7 +35,7 @@ export const StatisticsBlock = styled.View<StatisticsBlockProps>`
   background-color: ${({ theme, backgroundStyle }) => {
       switch (backgroundStyle) {
         case 'gray':
-          return theme.colors.gray_600
+          return theme.colors.gray_600;
         case 'green':
           return theme.colors.green_light;
         case 'red':
