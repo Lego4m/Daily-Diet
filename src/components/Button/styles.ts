@@ -12,7 +12,6 @@ export const Container = styled.TouchableHighlight.attrs<Props>(({ theme, type }
     theme.colors.gray_100 : 
     theme.colors.gray_500,
 }))<Props>`
-  flex: 1;
   flex-direction: row;
 
   ${({ theme, type }) => css`

@@ -7,11 +7,11 @@ import { IconProps } from 'phosphor-react-native';
 import { ButtonTypeStyleProps, Container, Title } from './styles';
 
 interface ButtonProps extends TouchableHighlightProps {
-  Icon?: React.FC<IconProps>;
+  icon?: React.FC<IconProps>;
   type?: ButtonTypeStyleProps;
 }
 
-export function Button({ type = 'primary', Icon, children, ...rest }: ButtonProps) {
+export function Button({ type = 'primary', icon: Icon, children, ...rest }: ButtonProps) {
   const theme = useTheme();
 
   return (
