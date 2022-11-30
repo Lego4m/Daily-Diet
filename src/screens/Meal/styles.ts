@@ -53,3 +53,19 @@ export const TagsContainer = styled.View`
 export const ButtonsContainer = styled.View`
   margin-top: auto;
 `;
+
+export const ModalTitle = styled.Text`
+  text-align: center;
+
+  ${({ theme }) => css`
+    color: ${theme.colors.gray_200};
+    font-size: ${theme.font_size.lg}px;
+    font-family: ${theme.font_family.bold};
+  `}
+`;
+
+export const ModalButtonsContainer = styled.View`
+  width: 100%;
+  margin-top: 32px;
+  flex-direction: row;
+`;

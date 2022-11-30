@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { format } from 'date-fns';
 
 import { Pencil, Trash } from 'phosphor-react-native';
@@ -5,6 +7,7 @@ import { Pencil, Trash } from 'phosphor-react-native';
 import { Button } from '@components/Button';
 import { Header } from '@components/Header';
 import { Tag } from '@components/Tag';
+import { Modal } from '@components/Modal';
 
 import {
   Container,
@@ -13,52 +16,81 @@ import {
   InfoDescription,
   InfoTitle,
   TagsContainer,
-  ButtonsContainer
+  ButtonsContainer,
+  ModalTitle,
+  ModalButtonsContainer
 } from './styles';
 
 export function Meal() {
+  const [excludeModalVisible, setExcludeModalVisible] = useState(true);
+
   return (
-    <Container>
-      <Header 
-        title='Refeição' 
-        headerColor='inDiet'
-      />
+    <>
+      <Container>
+        <Header 
+          title='Refeição' 
+          headerColor='inDiet'
+        />
 
-      <MealInformationsContainer>
-        <MealTitle>
-          Sanduíche
-        </MealTitle>
+        <MealInformationsContainer>
+          <MealTitle>
+            Sanduíche
+          </MealTitle>
 
-        <InfoDescription>
-          Sanduíche de pão integral com atuam e salada de alface e tomate
-        </InfoDescription>
+          <InfoDescription>
+            Sanduíche de pão integral com atum e salada de alface e tomate
+          </InfoDescription>
 
-        <InfoTitle>
-          Data e hora
-        </InfoTitle>
+          <InfoTitle>
+            Data e hora
+          </InfoTitle>
 
-        <InfoDescription>
-          {format(new Date(), "dd/MM/yyyy 'às' HH:mm")}
-        </InfoDescription>
+          <InfoDescription>
+            {format(new Date(), "dd/MM/yyyy 'às' HH:mm")}
+          </InfoDescription>
 
-        <TagsContainer>
-          <Tag isOnDiet={false} />
-        </TagsContainer>
-        
-        <ButtonsContainer>
-          <Button icon={Pencil}>
-            Editar refeição
+          <TagsContainer>
+            <Tag isOnDiet={false} />
+          </TagsContainer>
+          
+          <ButtonsContainer>
+            <Button icon={Pencil}>
+              Editar refeição
+            </Button>
+
+            <Button 
+              icon={Trash} 
+              type='secondary'
+              onPress={() => setExcludeModalVisible(true)}
+              style={{ marginTop: 8 }}
+            >
+              Excluir refeição
+            </Button>
+          </ButtonsContainer>
+        </MealInformationsContainer>
+      </Container>
+
+      <Modal
+        onRequestClose={() => setExcludeModalVisible(false)}
+        visible={excludeModalVisible}
+      >
+        <ModalTitle>
+          Deseja realmente excluir o registro da refeição?
+        </ModalTitle>
+
+        <ModalButtonsContainer>
+          <Button style={{ flex: 1 }}>
+            Cancelar
           </Button>
 
-          <Button 
-            icon={Trash} 
+          <Button
             type='secondary'
-            style={{ marginTop: 8 }}
+            style={{ marginLeft: 12, flex: 1 }}
           >
-            Excluir refeição
+            Sim, exluir
           </Button>
-        </ButtonsContainer>
-      </MealInformationsContainer>
-    </Container>
+        </ModalButtonsContainer>
+      </Modal>
+    </>
   )
 }
