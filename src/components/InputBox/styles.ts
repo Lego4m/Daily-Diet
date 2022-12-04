@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
-  flex-grow: 1;
-`;
+export const Container = styled.View``;
 
 export const Title = styled.Text`
   ${({ theme }) => css`

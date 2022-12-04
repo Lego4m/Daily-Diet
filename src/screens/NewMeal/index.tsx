@@ -1,15 +1,18 @@
-import { Container, DatePickerContainer, EditorContainer } from './styles';
+import { Container, DatePickerContainer } from './styles';
 
 import { Header } from '@components/Header';
 import { InputBox } from '@components/InputBox';
+import { Radio } from '@components/Radio';
+import { Button } from '@components/Button';
 
 export function NewMeal() {
   return (
-    <Container>
+    <>
       <Header 
-        title='Editar Refeição'
+        title='Nova Refeição'
       />
-      <EditorContainer>
+
+      <Container>
         <InputBox 
           title='Nome'
         />
@@ -23,14 +26,29 @@ export function NewMeal() {
         />
 
         <DatePickerContainer>
-          <InputBox title='Data'  />
+          <InputBox 
+            title='Data'
+            containerProps={{ style: { flexGrow: 1 } }} 
+          />
 
           <InputBox 
             title='Hora'
-            containerProps={{ style: { marginLeft: 20 } }} 
+            containerProps={{ style: { marginLeft: 20, flexGrow: 1 } }} 
           />
         </DatePickerContainer>
-      </EditorContainer>
-    </Container>
+
+        <Radio
+          title='Está dentro da dieta?'
+          onChangeSelection={() => {}}
+          containerStyle={{ marginBottom: 24 }}
+        />
+
+        <Button
+          style={{ marginTop: 'auto' }}
+        >
+          Cadastrar Refeição
+        </Button>
+      </Container>
+    </>
   )
 }
