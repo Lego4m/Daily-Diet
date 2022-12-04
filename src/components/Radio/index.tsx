@@ -6,7 +6,7 @@ import { Container, Title, ButtonsContainer, Button, Ball, ButtonText } from './
 interface RadioProps {
   title: string;
   onChangeSelection: (value: boolean) => void;
-  containerStyle: ViewProps['style']
+  containerStyle?: ViewProps['style'];
 }
 
 export function Radio({ title, onChangeSelection, containerStyle = {} }: RadioProps) {

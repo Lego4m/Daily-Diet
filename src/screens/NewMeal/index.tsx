@@ -22,18 +22,18 @@ export function NewMeal() {
           multiline
           numberOfLines={4}
           textAlignVertical='top'
-          containerProps={{ style: { marginTop: 24 } }}
+          containerStyle={{ marginTop: 24 }}
         />
 
         <DatePickerContainer>
           <InputBox 
             title='Data'
-            containerProps={{ style: { flexGrow: 1 } }} 
+            containerStyle={{ flexGrow: 1 }} 
           />
 
           <InputBox 
             title='Hora'
-            containerProps={{ style: { marginLeft: 20, flexGrow: 1 } }} 
+            containerStyle={{ marginLeft: 20, flexGrow: 1 }} 
           />
         </DatePickerContainer>
 
