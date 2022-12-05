@@ -9,7 +9,9 @@ interface ContainerProps {
 }
 
 export const Container = styled.View<ContainerProps>`
-  padding: 64px 24px;
+  padding: 54px 24px 56px 24px;
+
+  /* Alterar o 54px posteriormente quando o React Safety Area estiver no código - o padding será de 24px */
 
   background-color: ${({ theme, backgroundStyle }) => {
       switch (backgroundStyle) {
@@ -57,4 +59,8 @@ export const GoBackIcon = styled(ArrowLeft).attrs<BackIconProps>(({ theme, iconC
 export const PlaceholderView = styled.View`
   width: 24px;
   height: 24px;
+`;
+
+export const ChildrenContainer = styled.View`
+  padding-bottom: 10px;
 `;

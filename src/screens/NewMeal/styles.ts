@@ -9,7 +9,6 @@ export const Container = styled.ScrollView.attrs(() => ({
   }
 }))`
   background-color: ${({ theme }) => theme.colors.gray_700};
-  /* flex: 1; */
 
   margin-top: -32px;
 

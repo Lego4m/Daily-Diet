@@ -6,7 +6,8 @@ import {
   NavigationTitle,
   PlaceholderView,
   GoBackIcon,
-  HeaderColorStyleProp
+  HeaderColorStyleProp,
+  ChildrenContainer
 } from './styles';
 
 interface HeaderProps {
@@ -33,7 +34,11 @@ export function Header({ title, headerColor = 'gray', children }: HeaderProps) {
         <PlaceholderView />
       </NavigationContainer>
       
-      {children}
+      { children && (
+        <ChildrenContainer>
+          {children}
+        </ChildrenContainer>
+      )}
     </Container>
   )
 }
