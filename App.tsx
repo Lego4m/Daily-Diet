@@ -11,6 +11,7 @@ import { Home } from '@screens/Home'
 import { Statistics } from '@screens/Statistics';
 import { Meal } from '@screens/Meal';
 import { NewMeal } from '@screens/NewMeal';
+import { Feedback } from '@screens/Feedback';
 
 import { Loading } from '@components/Loading';
 
@@ -27,7 +28,7 @@ export default function App() {
         translucent
       />
 
-      { fontsLoaded ? <NewMeal /> : <Loading /> }
+      { fontsLoaded ? <Feedback /> : <Loading /> }
     </ThemeProvider>
   )
 }
