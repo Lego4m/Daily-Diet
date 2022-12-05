@@ -1,11 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors.gray_700};
-  flex: 1;
-`;
-
-export const MealInformationsContainer = styled.View`
   flex: 1;
 
   background-color: ${({ theme }) => theme.colors.gray_700};

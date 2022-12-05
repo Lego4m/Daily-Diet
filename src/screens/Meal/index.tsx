@@ -11,7 +11,6 @@ import { Modal } from '@components/Modal';
 
 import {
   Container,
-  MealInformationsContainer,
   MealTitle,
   InfoDescription,
   InfoTitle,
@@ -22,52 +21,50 @@ import {
 } from './styles';
 
 export function Meal() {
-  const [excludeModalVisible, setExcludeModalVisible] = useState(true);
+  const [excludeModalVisible, setExcludeModalVisible] = useState(false);
 
   return (
     <>
+      <Header 
+        title='Refeição' 
+        headerColor='inDiet'
+      />
+
       <Container>
-        <Header 
-          title='Refeição' 
-          headerColor='inDiet'
-        />
+        <MealTitle>
+          Sanduíche
+        </MealTitle>
 
-        <MealInformationsContainer>
-          <MealTitle>
-            Sanduíche
-          </MealTitle>
+        <InfoDescription>
+          Sanduíche de pão integral com atum e salada de alface e tomate
+        </InfoDescription>
 
-          <InfoDescription>
-            Sanduíche de pão integral com atum e salada de alface e tomate
-          </InfoDescription>
+        <InfoTitle>
+          Data e hora
+        </InfoTitle>
 
-          <InfoTitle>
-            Data e hora
-          </InfoTitle>
+        <InfoDescription>
+          {format(new Date(), "dd/MM/yyyy 'às' HH:mm")}
+        </InfoDescription>
 
-          <InfoDescription>
-            {format(new Date(), "dd/MM/yyyy 'às' HH:mm")}
-          </InfoDescription>
+        <TagsContainer>
+          <Tag isOnDiet={false} />
+        </TagsContainer>
+        
+        <ButtonsContainer>
+          <Button icon={Pencil}>
+            Editar refeição
+          </Button>
 
-          <TagsContainer>
-            <Tag isOnDiet={false} />
-          </TagsContainer>
-          
-          <ButtonsContainer>
-            <Button icon={Pencil}>
-              Editar refeição
-            </Button>
-
-            <Button 
-              icon={Trash} 
-              type='secondary'
-              onPress={() => setExcludeModalVisible(true)}
-              style={{ marginTop: 8 }}
-            >
-              Excluir refeição
-            </Button>
-          </ButtonsContainer>
-        </MealInformationsContainer>
+          <Button 
+            icon={Trash} 
+            type='secondary'
+            onPress={() => setExcludeModalVisible(true)}
+            style={{ marginTop: 8 }}
+          >
+            Excluir refeição
+          </Button>
+        </ButtonsContainer>
       </Container>
 
       <Modal

@@ -1,22 +1,17 @@
 import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors.gray_700};
   flex: 1;
-`;
-
-export const StatisticsContainer = styled.View`
   background-color: ${({ theme }) => theme.colors.gray_700};
 
   margin-top: -32px;
-  padding: 0 24px;
+  padding: 32px 24px;
 
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 `;
 
 export const StatisticsTitle = styled.Text`
-  margin-top: 32px;
   margin-bottom: 24px;
   text-align: center;
 

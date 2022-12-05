@@ -1,6 +1,5 @@
 import { 
   Container, 
-  StatisticsContainer, 
   StatisticsTitle,
   StatisticsBlock,
   StatisticsGroupBlock
@@ -17,9 +16,8 @@ const infos = {
 }
 
 export function Statistics() {
-
   return (
-    <Container>
+    <>
       <Header headerColor='inDiet'>
         <InfoBox 
           information='90,86%'
@@ -28,7 +26,7 @@ export function Statistics() {
         />
       </Header>
 
-      <StatisticsContainer>
+      <Container>
         <StatisticsTitle>
           Estatísticas gerais
         </StatisticsTitle>
@@ -68,7 +66,7 @@ export function Statistics() {
             />
           </StatisticsBlock>
         </StatisticsGroupBlock>
-      </StatisticsContainer>
-    </Container>
+      </Container>
+    </>
   )
 }
