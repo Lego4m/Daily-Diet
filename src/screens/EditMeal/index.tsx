@@ -5,10 +5,10 @@ import { InputBox } from '@components/InputBox';
 import { Radio } from '@components/Radio';
 import { Button } from '@components/Button';
 
-export function NewMeal() {
+export function EditMeal() {
   return (
     <>
-      <Header title='Nova refeição' />
+      <Header title='Editar refeição' />
 
       <Container>
         <InputBox title='Nome' />
@@ -42,7 +42,7 @@ export function NewMeal() {
         <Button
           style={{ marginTop: 'auto' }}
         >
-          Cadastrar refeição
+          Salvar alterações 
         </Button>
       </Container>
     </>

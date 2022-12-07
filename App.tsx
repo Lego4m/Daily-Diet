@@ -11,6 +11,7 @@ import { Home } from '@screens/Home'
 import { Statistics } from '@screens/Statistics';
 import { Meal } from '@screens/Meal';
 import { NewMeal } from '@screens/NewMeal';
+import { EditMeal } from '@screens/EditMeal';
 import { Feedback } from '@screens/Feedback';
 
 import { Loading } from '@components/Loading';
@@ -28,7 +29,7 @@ export default function App() {
         translucent
       />
 
-      { fontsLoaded ? <Feedback /> : <Loading /> }
+      { fontsLoaded ? <EditMeal /> : <Loading /> }
     </ThemeProvider>
   )
 }
