@@ -1,4 +1,4 @@
-import { Ball, Container, Title } from './styles';
+import { Container, Ball, Title } from './styles';
 
 interface TagProps {
   isOnDiet: boolean

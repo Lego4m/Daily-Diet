@@ -10,11 +10,11 @@ interface RadioProps {
 }
 
 export function Radio({ title, onChangeSelection, containerStyle = {} }: RadioProps) {
-  const [MealIsOnDiet, setMealIsOnDiet] = useState(true);
+  const [mealIsOnDiet, setMealIsOnDiet] = useState(true);
 
   useEffect(() => {
-    onChangeSelection(MealIsOnDiet);
-  }, [MealIsOnDiet]);
+    onChangeSelection(mealIsOnDiet);
+  }, [mealIsOnDiet]);
 
   return (
     <Container
@@ -27,7 +27,7 @@ export function Radio({ title, onChangeSelection, containerStyle = {} }: RadioPr
       <ButtonsContainer>
         <Button
           buttonType='primary'
-          isSelected={MealIsOnDiet}
+          isSelected={mealIsOnDiet}
           onPress={() => setMealIsOnDiet(true)}
         >
           <Ball colorType='onDiet' />
@@ -39,7 +39,7 @@ export function Radio({ title, onChangeSelection, containerStyle = {} }: RadioPr
 
         <Button
           buttonType='secondary'
-          isSelected={!MealIsOnDiet}
+          isSelected={!mealIsOnDiet}
           onPress={() => setMealIsOnDiet(false)}
           style={{ marginLeft: 8 }}
         >

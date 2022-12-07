@@ -1,12 +1,12 @@
+import { Header } from '@components/Header';
+import { InfoBox } from '@components/InfoBox';
+
 import { 
   Container, 
   StatisticsTitle,
   StatisticsBlock,
   StatisticsGroupBlock
 } from './styles';
-
-import { Header } from '@components/Header';
-import { InfoBox } from '@components/InfoBox';
 
 const infos = {
   daysOnDietInSequence: 22,

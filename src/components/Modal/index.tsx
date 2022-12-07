@@ -1,4 +1,4 @@
-import { Modal as ModalBase, ModalProps, Text } from 'react-native';
+import { Modal as ModalBase, ModalProps } from 'react-native';
 
 import { Container, Content } from './styles';
 

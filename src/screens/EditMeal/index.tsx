@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 
-import { Container, DatePickerContainer } from './styles';
-
 import { Header } from '@components/Header';
 import { InputBox } from '@components/InputBox';
 import { Radio } from '@components/Radio';
 import { Button } from '@components/Button';
+
+import { Container, DatePickerContainer } from './styles';
 
 export function EditMeal() {
   const navigation = useNavigation();
