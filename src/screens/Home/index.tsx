@@ -2,9 +2,13 @@ import { useState } from 'react';
 
 import { Image } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { format } from 'date-fns';
 
 import { Plus } from 'phosphor-react-native';
+
+import { Meal } from 'src/types';
 
 import { 
   Container, 
@@ -21,6 +25,7 @@ import { MealCard } from '@components/MealCard';
 
 import logo from '../../assets/logo.png';
 import avatar from '../../assets/avatar.png';
+
 
 const DATA = [
   {
@@ -47,6 +52,20 @@ const DATA = [
 export function Home() {
   const [isOnDiet, setIsOnDiet] = useState(true);
 
+  const navigation = useNavigation();
+
+  function handleGoToStatistics() {
+    navigation.navigate('statistics');
+  }
+
+  function handleNewMeal() {
+    navigation.navigate('newMeal');
+  }
+
+  function handleGoToMealDetails(meal: Meal) {
+    navigation.navigate('meal', { meal });
+  }
+
   return (
     <Container
       ListHeaderComponent={
@@ -56,7 +75,7 @@ export function Home() {
             <Image source={avatar} />
           </Header>
 
-          <PercentBox isOnDiet={isOnDiet}>
+          <PercentBox isOnDiet={isOnDiet} onPress={handleGoToStatistics}>
             <>
               <ArrowUpRight isOnDiet={isOnDiet} />
 
@@ -71,10 +90,7 @@ export function Home() {
             Refeições
           </NewMealTitle>
 
-          <Button
-            Icon={Plus}
-            onPress={() => {}}
-          >
+          <Button icon={Plus} onPress={handleNewMeal}>
             Nova refeição
           </Button>
         </>
@@ -86,7 +102,12 @@ export function Home() {
           {format(new Date(section.sectionDate), 'dd.MM.yy')}
         </MealSectionHeader>
       )}
-      renderItem={({ item }) => <MealCard meal={item}/>}
+      renderItem={({ item }) => (
+        <MealCard 
+          meal={item} 
+          onPress={() => handleGoToMealDetails(item)}
+        />
+      )}
     />
   );
 }

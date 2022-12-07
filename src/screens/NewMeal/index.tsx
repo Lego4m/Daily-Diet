@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+
 import { Container, DatePickerContainer } from './styles';
 
 import { Header } from '@components/Header';
@@ -6,6 +8,12 @@ import { Radio } from '@components/Radio';
 import { Button } from '@components/Button';
 
 export function NewMeal() {
+  const navigation = useNavigation();
+  
+  function handleSaveMeal() {
+    navigation.navigate('feedback', { isMealOnDiet: true })
+  }
+
   return (
     <>
       <Header title='Nova refeição' />
@@ -41,6 +49,7 @@ export function NewMeal() {
 
         <Button
           style={{ marginTop: 'auto' }}
+          onPress={handleSaveMeal}
         >
           Cadastrar refeição
         </Button>

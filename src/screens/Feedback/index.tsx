@@ -1,5 +1,7 @@
 import { Image } from 'react-native';
 
+import { useNavigation, useRoute } from '@react-navigation/native';
+
 import { Button } from '@components/Button';
 
 import { Container, Title, Description, DescriptionBold } from './styles';
@@ -7,9 +9,22 @@ import { Container, Title, Description, DescriptionBold } from './styles';
 import isOnDietImage from '@assets/isOnDietIllustration.png'
 import outOfDietImage from '@assets/outOfDietIllustration.png'
 
+interface RouteParams {
+  isMealOnDiet: boolean;
+}
+
 const isOnDiet = true;
 
 export function Feedback() {
+  const navigation = useNavigation();
+
+  const route = useRoute();
+  const { isMealOnDiet } = route.params as RouteParams;
+
+  function handleGoToHome() {
+    navigation.navigate('home')
+  }
+
   return (
     <Container>
       {isOnDiet ? (
@@ -44,6 +59,7 @@ export function Feedback() {
 
       <Button
         style={{ marginTop: 32 }}
+        onPress={handleGoToHome}
       >
         Ir para a página inicial
       </Button>

@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
+import { useNavigation, useRoute } from '@react-navigation/native';
+
 import { format } from 'date-fns';
 
 import { Pencil, Trash } from 'phosphor-react-native';
+
+import { Meal as MealType } from 'src/types';
 
 import { Button } from '@components/Button';
 import { Header } from '@components/Header';
@@ -20,8 +24,25 @@ import {
   ModalButtonsContainer
 } from './styles';
 
+interface RouteParams {
+  meal: MealType;
+}
+
 export function Meal() {
   const [excludeModalVisible, setExcludeModalVisible] = useState(false);
+
+  const navigation = useNavigation();
+
+  const route = useRoute();
+  const { meal } = route.params as RouteParams;
+
+  function handleEditMeal() {
+    navigation.navigate('editMeal', { meal })
+  }
+
+  function handleRemoveMeal() {
+    navigation.navigate('home');
+  }
 
   return (
     <>
@@ -52,7 +73,7 @@ export function Meal() {
         </TagsContainer>
         
         <ButtonsContainer>
-          <Button icon={Pencil}>
+          <Button icon={Pencil} onPress={handleEditMeal}>
             Editar refeição
           </Button>
 
@@ -83,6 +104,7 @@ export function Meal() {
           <Button
             type='secondary'
             style={{ marginLeft: 12, flex: 1 }}
+            onPress={handleRemoveMeal}
           >
             Sim, exluir
           </Button>

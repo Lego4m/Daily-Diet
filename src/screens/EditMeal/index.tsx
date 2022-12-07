@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+
 import { Container, DatePickerContainer } from './styles';
 
 import { Header } from '@components/Header';
@@ -6,6 +8,12 @@ import { Radio } from '@components/Radio';
 import { Button } from '@components/Button';
 
 export function EditMeal() {
+  const navigation = useNavigation();
+  
+  function handleSaveEditions() {
+    navigation.navigate('home');
+  }
+
   return (
     <>
       <Header title='Editar refeição' />
@@ -41,6 +49,7 @@ export function EditMeal() {
 
         <Button
           style={{ marginTop: 'auto' }}
+          onPress={handleSaveEditions}
         >
           Salvar alterações 
         </Button>

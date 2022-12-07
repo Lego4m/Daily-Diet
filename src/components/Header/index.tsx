@@ -1,5 +1,7 @@
 import { TouchableOpacity } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { 
   Container, 
   NavigationContainer,
@@ -17,12 +19,18 @@ interface HeaderProps {
 }
 
 export function Header({ title, headerColor = 'gray', children }: HeaderProps) {
+  const navigation = useNavigation();
+  
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <Container backgroundStyle={headerColor}>
       <NavigationContainer>
         <TouchableOpacity 
           activeOpacity={0.65}
-          onPress={() => {}}
+          onPress={handleGoBack}
         >
           <GoBackIcon iconColor={headerColor} />
         </TouchableOpacity>
