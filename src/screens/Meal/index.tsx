@@ -48,16 +48,16 @@ export function Meal() {
     <>
       <Header 
         title='Refeição' 
-        headerColor='inDiet'
+        headerColor={meal.isOnDiet ? 'inDiet' : 'outOfDiet'}
       />
 
       <Container>
         <MealTitle>
-          Sanduíche
+          {meal.name}
         </MealTitle>
 
         <InfoDescription>
-          Sanduíche de pão integral com atum e salada de alface e tomate
+          {meal.description}
         </InfoDescription>
 
         <InfoTitle>
@@ -65,11 +65,11 @@ export function Meal() {
         </InfoTitle>
 
         <InfoDescription>
-          {format(new Date(), "dd/MM/yyyy 'às' HH:mm")}
+          {format(new Date(meal.date), "dd/MM/yyyy 'às' HH:mm")}
         </InfoDescription>
 
         <TagsContainer>
-          <Tag isOnDiet={false} />
+          <Tag isOnDiet={meal.isOnDiet} />
         </TagsContainer>
         
         <ButtonsContainer>
@@ -97,7 +97,10 @@ export function Meal() {
         </ModalTitle>
 
         <ModalButtonsContainer>
-          <Button style={{ flex: 1 }}>
+          <Button 
+            style={{ flex: 1 }} 
+            onPress={() => setExcludeModalVisible(false)}
+          >
             Cancelar
           </Button>
 

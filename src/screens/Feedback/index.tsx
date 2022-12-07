@@ -13,8 +13,6 @@ interface RouteParams {
   isMealOnDiet: boolean;
 }
 
-const isOnDiet = true;
-
 export function Feedback() {
   const navigation = useNavigation();
 
@@ -27,7 +25,7 @@ export function Feedback() {
 
   return (
     <Container>
-      {isOnDiet ? (
+      {isMealOnDiet ? (
         <>
           <Title isOnDiet>
             Continue assim!

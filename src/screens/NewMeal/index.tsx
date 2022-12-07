@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
 
 import { Header } from '@components/Header';
@@ -9,9 +11,19 @@ import { Container, DatePickerContainer } from './styles';
 
 export function NewMeal() {
   const navigation = useNavigation();
+
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [isMealOnDiet, setIsMealOnDiet] = useState(true);
   
   function handleSaveMeal() {
-    navigation.navigate('feedback', { isMealOnDiet: true })
+    const data = {
+      name, 
+      description,
+      isOnDiet: isMealOnDiet,
+    }
+
+    navigation.navigate('feedback', { isMealOnDiet });
   }
 
   return (
@@ -19,7 +31,7 @@ export function NewMeal() {
       <Header title='Nova refeição' />
 
       <Container>
-        <InputBox title='Nome' />
+        <InputBox title='Nome' value={name} onChangeText={setName} />
 
         <InputBox 
           title='Descrição'
@@ -27,6 +39,8 @@ export function NewMeal() {
           numberOfLines={4}
           textAlignVertical='top'
           containerStyle={{ marginTop: 24 }}
+          value={description}
+          onChangeText={setDescription}
         />
 
         <DatePickerContainer>
@@ -43,7 +57,8 @@ export function NewMeal() {
 
         <Radio
           title='Está dentro da dieta?'
-          onChangeSelection={() => {}}
+          value={isMealOnDiet}
+          onChangeSelection={setIsMealOnDiet}
           containerStyle={{ marginBottom: 24 }}
         />
 

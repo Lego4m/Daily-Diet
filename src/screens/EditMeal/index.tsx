@@ -1,4 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
+
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { Meal } from '../../types';
 
 import { Header } from '@components/Header';
 import { InputBox } from '@components/InputBox';
@@ -7,10 +11,27 @@ import { Button } from '@components/Button';
 
 import { Container, DatePickerContainer } from './styles';
 
+interface RouteParams {
+  meal: Meal;
+}
+
 export function EditMeal() {
   const navigation = useNavigation();
-  
+
+  const route = useRoute();
+  const { meal } = route.params as RouteParams;
+
+  const [name, setName] = useState(meal.name);
+  const [description, setDescription] = useState(meal.description);
+  const [isMealOnDiet, setIsMealOnDiet] = useState(meal.isOnDiet);
+
   function handleSaveEditions() {
+    const data = {
+      name, 
+      description,
+      isOnDiet: isMealOnDiet,
+    }
+
     navigation.navigate('home');
   }
 
@@ -19,7 +40,7 @@ export function EditMeal() {
       <Header title='Editar refeição' />
 
       <Container>
-        <InputBox title='Nome' />
+        <InputBox title='Nome' value={name} onChangeText={setName} />
 
         <InputBox 
           title='Descrição'
@@ -27,6 +48,8 @@ export function EditMeal() {
           numberOfLines={4}
           textAlignVertical='top'
           containerStyle={{ marginTop: 24 }}
+          value={description}
+          onChangeText={setDescription}
         />
 
         <DatePickerContainer>
@@ -43,7 +66,8 @@ export function EditMeal() {
 
         <Radio
           title='Está dentro da dieta?'
-          onChangeSelection={() => {}}
+          value={isMealOnDiet}
+          onChangeSelection={setIsMealOnDiet}
           containerStyle={{ marginBottom: 24 }}
         />
 
