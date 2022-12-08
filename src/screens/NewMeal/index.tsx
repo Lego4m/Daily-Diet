@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Header } from '@components/Header';
 import { InputBox } from '@components/InputBox';
 import { Radio } from '@components/Radio';
+import { DateInput } from '@components/DateInput';
 import { Button } from '@components/Button';
 
 import { Container, DatePickerContainer } from './styles';
@@ -15,12 +16,14 @@ export function NewMeal() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isMealOnDiet, setIsMealOnDiet] = useState(true);
+  const [date, setDate] = useState(new Date());
   
   function handleSaveMeal() {
     const data = {
       name, 
       description,
       isOnDiet: isMealOnDiet,
+      date,
     }
 
     navigation.navigate('feedback', { isMealOnDiet });
@@ -44,14 +47,19 @@ export function NewMeal() {
         />
 
         <DatePickerContainer>
-          <InputBox 
+          <DateInput
             title='Data'
-            containerStyle={{ flexGrow: 1 }} 
+            value={date}
+            onChange={setDate}
+            mode='date'
           />
 
-          <InputBox 
+          <DateInput 
             title='Hora'
-            containerStyle={{ marginLeft: 20, flexGrow: 1 }} 
+            value={date}
+            onChange={setDate}
+            mode='time'
+            containerStyle={{ marginLeft: 20 }} 
           />
         </DatePickerContainer>
 

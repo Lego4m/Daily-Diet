@@ -7,6 +7,7 @@ import { Meal } from '../../types';
 import { Header } from '@components/Header';
 import { InputBox } from '@components/InputBox';
 import { Radio } from '@components/Radio';
+import { DateInput } from '@components/DateInput';
 import { Button } from '@components/Button';
 
 import { Container, DatePickerContainer } from './styles';
@@ -24,12 +25,14 @@ export function EditMeal() {
   const [name, setName] = useState(meal.name);
   const [description, setDescription] = useState(meal.description);
   const [isMealOnDiet, setIsMealOnDiet] = useState(meal.isOnDiet);
+  const [date, setDate] = useState(new Date(meal.date));
 
   function handleSaveEditions() {
     const data = {
       name, 
       description,
       isOnDiet: isMealOnDiet,
+      date
     }
 
     navigation.navigate('home');
@@ -53,14 +56,19 @@ export function EditMeal() {
         />
 
         <DatePickerContainer>
-          <InputBox 
+          <DateInput
             title='Data'
-            containerStyle={{ flexGrow: 1 }} 
+            value={date}
+            onChange={setDate}
+            mode='date'
           />
 
-          <InputBox 
+          <DateInput 
             title='Hora'
-            containerStyle={{ marginLeft: 20, flexGrow: 1 }} 
+            value={date}
+            onChange={setDate}
+            mode='time'
+            containerStyle={{ marginLeft: 20 }} 
           />
         </DatePickerContainer>
 
