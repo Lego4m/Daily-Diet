@@ -17,4 +17,10 @@ export const Input = styled.TextInput`
 
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.colors.gray_500};
+
+  ${({ theme }) => css`
+    color: ${theme.colors.gray_100};
+    font-size: ${theme.font_size.md}px;
+    font-family: ${theme.font_family.regular};
+  `}
 `;  

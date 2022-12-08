@@ -20,7 +20,9 @@ interface ButtonProps {
   isSelected: boolean;
 }
 
-export const Button = styled.TouchableOpacity<ButtonProps>`
+export const Button = styled.TouchableOpacity.attrs(() => ({
+  activeOpacity: 0.65
+}))<ButtonProps>`
   flex: 1;
   padding: 16px;
 
