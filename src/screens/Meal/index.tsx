@@ -13,6 +13,8 @@ import { Header } from '@components/Header';
 import { Tag } from '@components/Tag';
 import { Modal } from '@components/Modal';
 
+import { mealRemove } from '@storage/meal/mealRemove';
+
 import {
   Container,
   MealTitle,
@@ -40,8 +42,15 @@ export function Meal() {
     navigation.navigate('editMeal', { meal })
   }
 
-  function handleRemoveMeal() {
-    navigation.navigate('home');
+  async function handleRemoveMeal() {
+    try {
+      await mealRemove(meal.id);
+
+      navigation.navigate('home');
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   return (
