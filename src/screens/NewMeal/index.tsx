@@ -8,6 +8,8 @@ import { Radio } from '@components/Radio';
 import { DateInput } from '@components/DateInput';
 import { Button } from '@components/Button';
 
+import { mealCreate } from '@storage/meal/mealCreate';
+
 import { Container, DatePickerContainer } from './styles';
 
 export function NewMeal() {
@@ -18,15 +20,24 @@ export function NewMeal() {
   const [isMealOnDiet, setIsMealOnDiet] = useState(true);
   const [date, setDate] = useState(new Date());
   
-  function handleSaveMeal() {
+  async function handleNewMeal() {
     const data = {
       name, 
       description,
       isOnDiet: isMealOnDiet,
-      date,
+      date: date.toISOString(),
     }
 
-    navigation.navigate('feedback', { isMealOnDiet });
+    try {
+      if (data.name.length < 1) {
+        return;
+      }
+
+      await mealCreate(data);
+      navigation.navigate('feedback', { isMealOnDiet });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -72,7 +83,7 @@ export function NewMeal() {
 
         <Button
           style={{ marginTop: 'auto' }}
-          onPress={handleSaveMeal}
+          onPress={handleNewMeal}
         >
           Cadastrar refeição
         </Button>

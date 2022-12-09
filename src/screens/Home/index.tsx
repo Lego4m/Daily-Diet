@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 import { Image } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
-import { format } from 'date-fns';
+import { format, isSameDay } from 'date-fns';
 
 import { Plus } from 'phosphor-react-native';
 
@@ -23,34 +23,18 @@ import { InfoBox } from '@components/InfoBox';
 import { Button } from '@components/Button';
 import { MealCard } from '@components/MealCard';
 
+import { mealsGetAll } from '@storage/meal/mealsGetAll';
+
 import logo from '../../assets/logo.png';
 import avatar from '../../assets/avatar.png';
 
-
-const DATA = [
-  {
-    sectionDate: '2022-11-26T12:26:31.000Z',
-    data: [
-      {
-        id: 1,
-        name: 'Hambúrguer',
-        date: '2022-11-26T23:26:31.000Z',
-        description: 'teste',
-        isOnDiet: false,
-      },
-      {
-        id: 2,
-        name: 'Whey Protein',
-        date: '2022-11-26T18:26:31.000Z',
-        description: 'teste',
-        isOnDiet: true,
-      }
-    ]
-  }
-]
+type SectionData = {
+  sectionDate: string,
+  data: Meal[]
+}[]
 
 export function Home() {
-  const [isOnDiet, setIsOnDiet] = useState(true);
+  const [meals, setMeals] = useState<Meal[]>([]);
 
   const navigation = useNavigation();
 
@@ -66,6 +50,52 @@ export function Home() {
     navigation.navigate('meal', { meal });
   }
 
+  async function fetchMeals() {
+    try {
+      const fetchedMeals = await mealsGetAll();
+      setMeals(fetchedMeals);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const mealsBySection = useMemo(() => {
+    const reducedMeals = meals.reduce((acc, meal) => {
+      const mealDate = new Date(meal.date);
+
+      if (!acc.some((section) => isSameDay(new Date(section.sectionDate), mealDate))) {
+        acc.push({ sectionDate: mealDate.toISOString(), data: [] });
+      }
+      
+      const indexOfMealSection = acc.findIndex((section) => isSameDay(new Date(section.sectionDate), mealDate));
+
+      acc[indexOfMealSection].data.push(meal);
+
+      return acc;
+    }, [] as SectionData);
+
+    const mealsByCrescentDateOrder = reducedMeals
+      .sort((a, b) => new Date(b.sectionDate).getTime() - new Date(a.sectionDate).getTime())  // Order the sections by section date
+      .map((section) => ({...section, data: section.data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())}));  // Order the meals by meal date
+
+    return mealsByCrescentDateOrder;
+  }, [meals]);
+
+  const dietInfos = useMemo(() => {
+    const mealsInDiet = meals.reduce((acc, meal) => meal.isOnDiet ? acc + 1 : acc, 0);
+
+    const percentOfMealsInDiet = mealsInDiet * 100 / meals.length;
+
+    return {
+      percentOfMealsInDiet,
+      isOnDiet: percentOfMealsInDiet > 60,
+    }
+  }, [meals]);  
+
+  useFocusEffect(useCallback(() => {
+    fetchMeals();
+  }, []));
+
   return (
     <Container
       ListHeaderComponent={
@@ -75,12 +105,15 @@ export function Home() {
             <Image source={avatar} />
           </Header>
 
-          <PercentBox isOnDiet={isOnDiet} onPress={handleGoToStatistics}>
+          <PercentBox 
+            isOnDiet={dietInfos.isOnDiet} 
+            onPress={handleGoToStatistics}
+          >
             <>
-              <ArrowUpRight isOnDiet={isOnDiet} />
+              <ArrowUpRight isOnDiet={dietInfos.isOnDiet} />
 
               <InfoBox
-                information='98,86%'
+                information={`${dietInfos.percentOfMealsInDiet}%`}
                 description='das refeições dentro da dieta' 
               />
             </>
@@ -95,7 +128,7 @@ export function Home() {
           </Button>
         </>
       }
-      sections={DATA}
+      sections={mealsBySection}
       keyExtractor={(item) => String(item.id)}
       renderSectionHeader={({ section }) => (
         <MealSectionHeader>

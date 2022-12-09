@@ -10,6 +10,8 @@ import { Radio } from '@components/Radio';
 import { DateInput } from '@components/DateInput';
 import { Button } from '@components/Button';
 
+import { mealEdit } from '@storage/meal/mealEdit';
+
 import { Container, DatePickerContainer } from './styles';
 
 interface RouteParams {
@@ -27,15 +29,22 @@ export function EditMeal() {
   const [isMealOnDiet, setIsMealOnDiet] = useState(meal.isOnDiet);
   const [date, setDate] = useState(new Date(meal.date));
 
-  function handleSaveEditions() {
+  async function handleEditMeal() {
     const data = {
+      id: meal.id,
       name, 
       description,
       isOnDiet: isMealOnDiet,
-      date
+      date: date.toISOString(),
     }
 
-    navigation.navigate('home');
+    try {
+      await mealEdit(data);
+
+      navigation.navigate('home');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -81,7 +90,7 @@ export function EditMeal() {
 
         <Button
           style={{ marginTop: 'auto' }}
-          onPress={handleSaveEditions}
+          onPress={handleEditMeal}
         >
           Salvar alterações 
         </Button>
