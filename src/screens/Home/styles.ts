@@ -7,17 +7,13 @@ import { Meal } from 'src/types';
 
 export const Container = styled(SectionList<Meal, { sectionDate: string }>).attrs(() => ({
   showsVerticalScrollIndicator: false,
-  ListHeaderComponentStyle: {
-    flex: 1,
-  },
   contentContainerStyle: {
-    paddingBottom: 88,
+    paddingHorizontal: 24,
+    paddingBottom: 56,
   }
 }))`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.gray_700};
-
-  padding: 64px 24px 0;
 `;
 
 export const Header = styled.View`

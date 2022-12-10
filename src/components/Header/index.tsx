@@ -2,6 +2,8 @@ import { TouchableOpacity } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { 
   Container, 
   NavigationContainer,
@@ -19,6 +21,8 @@ interface HeaderProps {
 }
 
 export function Header({ title, headerColor = 'gray', children }: HeaderProps) {
+  const insets = useSafeAreaInsets();
+
   const navigation = useNavigation();
   
   function handleGoBack() {
@@ -26,7 +30,10 @@ export function Header({ title, headerColor = 'gray', children }: HeaderProps) {
   }
 
   return (
-    <Container backgroundStyle={headerColor}>
+    <Container 
+      backgroundStyle={headerColor} 
+      style={{ paddingTop: insets.top + 24 }}
+    >
       <NavigationContainer>
         <TouchableOpacity 
           activeOpacity={0.65}

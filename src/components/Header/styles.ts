@@ -9,9 +9,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.View<ContainerProps>`
-  padding: 54px 24px 56px 24px;
-
-  /* Alterar o 54px posteriormente quando o React Safety Area estiver no código - o padding será de 24px */
+  padding: 0 24px 56px;
 
   background-color: ${({ theme, backgroundStyle }) => {
       switch (backgroundStyle) {

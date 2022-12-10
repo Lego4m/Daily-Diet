@@ -4,6 +4,8 @@ import { Image } from 'react-native';
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { format, isSameDay } from 'date-fns';
 
 import { Plus } from 'phosphor-react-native';
@@ -37,6 +39,8 @@ type MealsListSection = {
 }
 
 export function Home() {
+  const insets = useSafeAreaInsets();
+
   const [meals, setMeals] = useState<Meal[]>([]);
 
   const navigation = useNavigation();
@@ -94,6 +98,7 @@ export function Home() {
 
   return (
     <Container
+      ListHeaderComponentStyle={{ paddingTop: insets.top + 32 }}
       ListHeaderComponent={
         <>
           <Header>
