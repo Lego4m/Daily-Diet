@@ -10,29 +10,31 @@ import { Plus } from 'phosphor-react-native';
 
 import { Meal } from 'src/types';
 
-import { 
-  Container, 
-  Header, 
-  PercentBox, 
-  ArrowUpRight, 
-  NewMealTitle, 
-  MealSectionHeader 
-} from './styles';
-
 import { InfoBox } from '@components/InfoBox';
 import { Button } from '@components/Button';
 import { MealCard } from '@components/MealCard';
 
 import { mealsGetAll } from '@storage/meal/mealsGetAll';
+
 import { getDietInfos } from '@utils/dietInfos';
+import { formatNumber } from '@utils/formatNumber';
+
+import { 
+  Container, 
+  Header, 
+  PercentBox, 
+  PercentBoxArrow, 
+  NewMealTitle, 
+  MealSectionHeader 
+} from './styles';
 
 import logo from '../../assets/logo.png';
 import avatar from '../../assets/avatar.png';
 
-type SectionData = {
+type MealsListSection = {
   sectionDate: string,
   data: Meal[]
-}[]
+}
 
 export function Home() {
   const [meals, setMeals] = useState<Meal[]>([]);
@@ -73,7 +75,7 @@ export function Home() {
       acc[indexOfMealSection].data.push(meal);
 
       return acc;
-    }, [] as SectionData);
+    }, [] as MealsListSection[]);
 
     const mealsByDecrescentDateOrder = reducedMeals
       .sort((a, b) => new Date(b.sectionDate).getTime() - new Date(a.sectionDate).getTime())  // Order the sections by section date
@@ -104,10 +106,10 @@ export function Home() {
             onPress={handleGoToStatistics}
           >
             <>
-              <ArrowUpRight isOnDiet={dietInfos.isOnDiet} />
+              <PercentBoxArrow isOnDiet={dietInfos.isOnDiet} />
 
               <InfoBox
-                information={`${dietInfos.percentOfMealsInDiet}%`}
+                information={`${formatNumber(dietInfos.percentOfMealsInDiet)}%`}
                 description='das refeições dentro da dieta' 
               />
             </>

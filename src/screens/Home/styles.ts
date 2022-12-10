@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
-import { ArrowUpRight as Arrow } from 'phosphor-react-native';
+import { ArrowUpRight } from 'phosphor-react-native';
 import { SectionList } from 'react-native';
 
 import { Meal } from 'src/types';
@@ -25,14 +25,14 @@ export const Header = styled.View`
   justify-content: space-between;
 `;
 
-interface PercentProps {
-  isOnDiet?: boolean;
+interface PercentBoxProps {
+  isOnDiet: boolean;
 }
 
 export const PercentBox = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 0.65,
-}))<PercentProps>`
-  background-color: ${({ theme, isOnDiet = true }) => 
+}))<PercentBoxProps>`
+  background-color: ${({ theme, isOnDiet }) => 
     isOnDiet ? theme.colors.green_light : theme.colors.red_light
   };
   
@@ -42,14 +42,14 @@ export const PercentBox = styled.TouchableOpacity.attrs(() => ({
   margin-top: 36px;
 `;
 
-interface ArrowUpRightProps {
-  isOnDiet?: boolean;
+interface PercentBoxArrowProps {
+  isOnDiet: boolean;
 }
 
-export const ArrowUpRight = styled(Arrow).attrs<ArrowUpRightProps>(({ theme, isOnDiet = true }) => ({
+export const PercentBoxArrow = styled(ArrowUpRight).attrs<PercentBoxArrowProps>(({ theme, isOnDiet }) => ({
   color: isOnDiet ? theme.colors.green_dark : theme.colors.red_dark,
   size: 24,
-}))<ArrowUpRightProps>`
+}))<PercentBoxArrowProps>`
   position: absolute;
   top: 8px;
   right: 8px;

@@ -8,6 +8,7 @@ import { InfoBox } from '@components/InfoBox';
 import { mealsGetAll } from '@storage/meal/mealsGetAll';
 
 import { getDietInfos } from '@utils/dietInfos';
+import { formatNumber } from '@utils/formatNumber';
 
 import { Meal } from 'src/types';
 
@@ -41,7 +42,7 @@ export function Statistics() {
     <>
       <Header headerColor={dietInfos.isOnDiet ? 'inDiet' : 'outOfDiet'}>
         <InfoBox 
-          information={`${dietInfos.percentOfMealsInDiet}%`}
+          information={`${formatNumber(dietInfos.percentOfMealsInDiet)}%`}
           description='das refeições dentro da dieta'
           informationFontSize='xxl'
         />

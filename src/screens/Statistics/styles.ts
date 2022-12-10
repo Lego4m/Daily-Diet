@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
-  flex: 1;
+export const Container = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    flexGrow: 1,
+    paddingVertical: 32,
+    paddingHorizontal: 24,
+  }
+}))`
   background-color: ${({ theme }) => theme.colors.gray_700};
 
   margin-top: -32px;
-  padding: 32px 24px;
 
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
