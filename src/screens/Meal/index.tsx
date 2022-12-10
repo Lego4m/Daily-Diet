@@ -50,7 +50,6 @@ export function Meal() {
     } catch (error) {
       console.log(error);
     }
-
   }
 
   return (

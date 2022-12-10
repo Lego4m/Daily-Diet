@@ -46,7 +46,7 @@ export function EditMeal() {
       }
 
       await mealEdit(data);
-      navigation.navigate('home');
+      navigation.navigate('meal', { meal: data });
     } catch (error) {
       console.log(error);
     }
