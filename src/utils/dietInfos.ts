@@ -6,7 +6,7 @@ export function getDietInfos(meals: Meal[]) {
   const mealsInDiet = meals.reduce((acc, meal) => meal.isOnDiet ? acc + 1 : acc, 0);
   const mealsOutOfDiet = meals.reduce((acc, meal) => meal.isOnDiet ? acc : acc + 1, 0);
 
-  const percentOfMealsInDiet = mealsInDiet * 100 / totalMeals;
+  const percentOfMealsInDiet = (mealsInDiet * 100 / totalMeals) || 0;
 
   const isOnDiet = percentOfMealsInDiet >= 60;
 

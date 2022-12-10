@@ -15,6 +15,7 @@ import { Meal } from 'src/types';
 import { InfoBox } from '@components/InfoBox';
 import { Button } from '@components/Button';
 import { MealCard } from '@components/MealCard';
+import { ListEmpty } from '@components/ListEmpty';
 
 import { mealsGetAll } from '@storage/meal/mealsGetAll';
 
@@ -142,6 +143,7 @@ export function Home() {
           onPress={() => handleGoToMealDetails(item)}
         />
       )}
+      ListEmptyComponent={() => <ListEmpty message='Que tal adicionar sua primeira refeição?'/>}
     />
   );
 }

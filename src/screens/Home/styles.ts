@@ -8,11 +8,11 @@ import { Meal } from 'src/types';
 export const Container = styled(SectionList<Meal, { sectionDate: string }>).attrs(() => ({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
+    flex: 1,
     paddingHorizontal: 24,
     paddingBottom: 56,
   }
 }))`
-  flex: 1;
   background-color: ${({ theme }) => theme.colors.gray_700};
 `;
 
