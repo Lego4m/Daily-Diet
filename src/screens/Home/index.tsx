@@ -24,6 +24,7 @@ import { Button } from '@components/Button';
 import { MealCard } from '@components/MealCard';
 
 import { mealsGetAll } from '@storage/meal/mealsGetAll';
+import { getDietInfos } from '@utils/dietInfos';
 
 import logo from '../../assets/logo.png';
 import avatar from '../../assets/avatar.png';
@@ -82,14 +83,7 @@ export function Home() {
   }, [meals]);
 
   const dietInfos = useMemo(() => {
-    const mealsInDiet = meals.reduce((acc, meal) => meal.isOnDiet ? acc + 1 : acc, 0);
-
-    const percentOfMealsInDiet = mealsInDiet * 100 / meals.length;
-
-    return {
-      percentOfMealsInDiet,
-      isOnDiet: percentOfMealsInDiet > 60,
-    }
+    return getDietInfos(meals);
   }, [meals]);  
 
   useFocusEffect(useCallback(() => {
