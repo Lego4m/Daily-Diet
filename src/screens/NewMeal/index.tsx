@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Alert } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 
 import { Header } from '@components/Header';
@@ -30,7 +32,7 @@ export function NewMeal() {
 
     try {
       if (data.name.length < 1) {
-        return;
+        return Alert.alert('Adicionar refeição', 'Você deve inserir o nome da refeição!');
       }
 
       await mealCreate(data);

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Alert } from 'react-native';
+
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Meal } from '../../types';
@@ -39,8 +41,11 @@ export function EditMeal() {
     }
 
     try {
-      await mealEdit(data);
+      if (data.name.length < 1) {
+        return Alert.alert('Editar refeição', 'Você deve inserir o nome da refeição!');
+      }
 
+      await mealEdit(data);
       navigation.navigate('home');
     } catch (error) {
       console.log(error);

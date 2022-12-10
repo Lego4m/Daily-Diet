@@ -60,5 +60,5 @@ export const PlaceholderView = styled.View`
 `;
 
 export const ChildrenContainer = styled.View`
-  padding-bottom: 10px;
+  margin-bottom: 10px;
 `;
