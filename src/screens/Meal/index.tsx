@@ -65,9 +65,13 @@ export function Meal() {
           {meal.name}
         </MealTitle>
 
-        <InfoDescription>
-          {meal.description}
-        </InfoDescription>
+        {
+          meal.description.length >= 1 && (
+            <InfoDescription>
+              {meal.description}
+            </InfoDescription>
+          )
+        }
 
         <InfoTitle>
           Data e hora
