@@ -1,5 +1,15 @@
+import { useState, useCallback, useMemo } from 'react';
+
+import { useFocusEffect } from '@react-navigation/native';
+
 import { Header } from '@components/Header';
 import { InfoBox } from '@components/InfoBox';
+
+import { mealsGetAll } from '@storage/meal/mealsGetAll';
+
+import { getDietInfos } from '@utils/dietInfos';
+
+import { Meal } from 'src/types';
 
 import { 
   Container, 
@@ -8,19 +18,30 @@ import {
   StatisticsGroupBlock
 } from './styles';
 
-const infos = {
-  daysOnDietInSequence: 22,
-  meals: 109,
-  mealsInDiet: 99,
-  mealsOutOfDiet: 10,
-}
-
 export function Statistics() {
+  const [meals, setMeals] = useState<Meal[]>([]);
+
+  async function fetchMeals() {
+    try {
+      const fetchedMeals = await mealsGetAll();
+      setMeals(fetchedMeals);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const dietInfos = useMemo(() => {
+    return getDietInfos(meals);
+  }, [meals]);
+
+  useFocusEffect(useCallback(() => {
+    fetchMeals();
+  }, []));
   return (
     <>
-      <Header headerColor='inDiet'>
+      <Header headerColor={dietInfos.isOnDiet ? 'inDiet' : 'outOfDiet'}>
         <InfoBox 
-          information='90,86%'
+          information={`${dietInfos.percentOfMealsInDiet}%`}
           description='das refeições dentro da dieta'
           informationFontSize='xxl'
         />
@@ -33,14 +54,14 @@ export function Statistics() {
 
         <StatisticsBlock>
           <InfoBox 
-            information={String(infos.daysOnDietInSequence)}
+            information={String(dietInfos.bestInDietSequence)}
             description='melhor sequência de pratos dentro da dieta'
           />
         </StatisticsBlock>
 
         <StatisticsBlock style={{ marginTop: 12 }}>
           <InfoBox 
-            information={String(infos.meals)}
+            information={String(dietInfos.totalMeals)}
             description='refeições registradas'
           />
         </StatisticsBlock>
@@ -51,7 +72,7 @@ export function Statistics() {
             style={{ flex: 1 }}
           >
             <InfoBox 
-              information={String(infos.mealsInDiet)}
+              information={String(dietInfos.mealsInDiet)}
               description='refeições dentro da dieta'
             />
           </StatisticsBlock>
@@ -61,7 +82,7 @@ export function Statistics() {
             style={{ flex: 1, marginLeft: 12 }}
           >
             <InfoBox 
-              information={String(infos.mealsOutOfDiet)}
+              information={String(dietInfos.mealsOutOfDiet)}
               description='refeições fora da dieta'
             />
           </StatisticsBlock>

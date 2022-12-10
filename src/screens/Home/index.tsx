@@ -75,11 +75,11 @@ export function Home() {
       return acc;
     }, [] as SectionData);
 
-    const mealsByCrescentDateOrder = reducedMeals
+    const mealsByDecrescentDateOrder = reducedMeals
       .sort((a, b) => new Date(b.sectionDate).getTime() - new Date(a.sectionDate).getTime())  // Order the sections by section date
       .map((section) => ({...section, data: section.data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())}));  // Order the meals by meal date
 
-    return mealsByCrescentDateOrder;
+    return mealsByDecrescentDateOrder;
   }, [meals]);
 
   const dietInfos = useMemo(() => {
