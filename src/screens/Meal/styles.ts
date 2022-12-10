@@ -1,13 +1,17 @@
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
-  flex: 1;
-
+export const Container = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    flexGrow: 1,
+    paddingHorizontal: 24,
+    paddingTop: 40,
+    paddingBottom: 24,
+  }
+}))`
   background-color: ${({ theme }) => theme.colors.gray_700};
 
   margin-top: -32px;
-  padding: 40px 24px 24px;
-
+  
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 `;
@@ -42,6 +46,7 @@ export const InfoDescription = styled.Text`
 
 export const TagsContainer = styled.View`
   margin-top: 24px;
+  margin-bottom: 24px;
   flex-direction: row;
 `;
 

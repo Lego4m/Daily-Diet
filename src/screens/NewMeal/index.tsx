@@ -24,8 +24,8 @@ export function NewMeal() {
   
   async function handleNewMeal() {
     const data = {
-      name, 
-      description,
+      name: name.trim(), 
+      description: description.trim(),
       isOnDiet: isMealOnDiet,
       date: date.toISOString(),
     }

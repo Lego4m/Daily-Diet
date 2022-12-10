@@ -34,8 +34,8 @@ export function EditMeal() {
   async function handleEditMeal() {
     const data = {
       id: meal.id,
-      name, 
-      description,
+      name: name.trim(), 
+      description: description.trim(),
       isOnDiet: isMealOnDiet,
       date: date.toISOString(),
     }

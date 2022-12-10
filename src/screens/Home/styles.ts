@@ -5,10 +5,10 @@ import { SectionList } from 'react-native';
 
 import { Meal } from 'src/types';
 
-export const Container = styled(SectionList<Meal, { sectionDate: string }>).attrs(() => ({
+export const Container = styled(SectionList<Meal, { sectionDate: string }>).attrs(({ sections }) => ({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    flex: 1,
+    flex: sections.length >= 1 ? 0 : 1, // When the meals are empty, it center the EmptyListMessage in the screen.
     paddingHorizontal: 24,
     paddingBottom: 56,
   }
