@@ -38,6 +38,7 @@ export function NewMeal() {
       await mealCreate(data);
       navigation.navigate('feedback', { isMealOnDiet });
     } catch (error) {
+      Alert.alert('Adicionar refeição', 'Erro ao adicionar a refeição.');
       console.log(error);
     }
   }

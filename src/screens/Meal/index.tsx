@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Alert } from 'react-native';
+
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { format } from 'date-fns';
@@ -48,6 +50,7 @@ export function Meal() {
 
       navigation.navigate('home');
     } catch (error) {
+      Alert.alert('Excluir refeição', 'Erro ao excluir a refeição.');
       console.log(error);
     }
   }

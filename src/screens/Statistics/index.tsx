@@ -1,5 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 
+import { Alert } from 'react-native';
+
 import { useFocusEffect } from '@react-navigation/native';
 
 import { Header } from '@components/Header';
@@ -27,6 +29,7 @@ export function Statistics() {
       const fetchedMeals = await mealsGetAll();
       setMeals(fetchedMeals);
     } catch (error) {
+      Alert.alert('Carregar refeições', 'Erro ao carregar as refeições.');
       console.log(error);
     }
   }
@@ -38,6 +41,7 @@ export function Statistics() {
   useFocusEffect(useCallback(() => {
     fetchMeals();
   }, []));
+
   return (
     <>
       <Header headerColor={dietInfos.isOnDiet ? 'inDiet' : 'outOfDiet'}>

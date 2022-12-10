@@ -48,6 +48,7 @@ export function EditMeal() {
       await mealEdit(data);
       navigation.navigate('meal', { meal: data });
     } catch (error) {
+      Alert.alert('Editar refeição', 'Erro ao editar a refeição.');
       console.log(error);
     }
   }

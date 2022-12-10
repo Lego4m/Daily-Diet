@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 
-import { Image } from 'react-native';
+import { Image, Alert } from 'react-native';
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
@@ -63,6 +63,7 @@ export function Home() {
       const fetchedMeals = await mealsGetAll();
       setMeals(fetchedMeals);
     } catch (error) {
+      Alert.alert('Carregar refeições', 'Erro ao carregar as refeições.');
       console.log(error);
     }
   }
